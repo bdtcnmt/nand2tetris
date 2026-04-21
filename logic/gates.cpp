@@ -36,4 +36,15 @@ Bit xor_gate(Bit a, Bit b) {
     return or_gate(x, y);
 }
 
+// multiplexer 
+Bit mux(Bit a, Bit b, Bit sel) {
+    // (a AND NOT(sel)) OR (b AND sel)
+    return or_gate(and_gate(a, not_gate(sel)), and_gate(b, sel));
+}
+
+// demultiplexer
+DMuxResult dmux(Bit in, Bit sel) {
+    return {and_gate(in, not_gate(sel)), and_gate(in, sel)};
+}
+
 } // namespace logic
